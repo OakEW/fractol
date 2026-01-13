@@ -6,13 +6,13 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:53:46 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/13 16:37:41 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/13 17:01:17 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-// z(n+1) = z(n) + c;
+// z(n+1) = z(n)2 + c;
 // z = jx + jy * i;
 // c = a + b * i;
 // a=argv[2] , b =argv[3];
@@ -40,7 +40,7 @@ void	make_julia(t_data *fractol, int x, int y)
 	color_pix(fractol, x, y, iteration);
 }
 
-// z(n+1) = z(n) + c;
+// z(n+1) = z(n)2 + c;
 // z(0) = 0 + 0 * i;
 // c = zx + zy * i;
 void	make_mandelbrot(t_data *fractol, int x, int y)
