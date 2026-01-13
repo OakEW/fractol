@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:53:57 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/13 15:13:49 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/13 16:41:58 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,15 @@ void	rainbow_palette(t_data *fractol)
 	int	r;
 	int	g;
 	int	b;
+	double phase;
 
 	i = 0;
+	phase = 1.3;
 	while (i < 256)
 	{
-		r = (int)(127 * (1 + sin(0.0245 * i)));
-		g = (int)(127 * (1 + sin(0.0245 * i + 2)));
-		b = (int)(127 * (1 + sin(0.0245 * i + 4)));
+		r = (int)(127 * (1 + sin(0.04 * i + phase)));
+		g = (int)(127 * (1 + sin(0.04 * i + phase + 2)));
+		b = (int)(127 * (1 + sin(0.04 * i + phase + 4)));
 		fractol->palette[i] = (r << 16) | (g << 8) | b;
 		i++;
 	}
@@ -36,8 +38,10 @@ void	color_pix(t_data *fractol, int x, int y, int iteration)
 	int		color;
 
 	if (fractol->set == 1)
-		iteration *= 13;
+		iteration = 10.0 * sqrt((double)iteration);
 	color = fractol->palette[iteration % 256];
+	if (fractol->set == 1 && iteration >= 100)
+		color = 0x00100030;
 	dst = fractol->addr + (y * fractol->line_length
 			+ x * (fractol->bits_per_pixel / 8));
 	if (*(unsigned int *)dst != (unsigned int)color)

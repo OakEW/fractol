@@ -35,6 +35,13 @@ relink.
 limits). This is the very principle of fractals.
 - You must be able to create different **Julia** sets by passing **different parameters** to
 the program.
+
+  ```
+  Beautiful Julia Set Values:
+  c = -0.83 0.23
+  c = -0.70176 -0.3842
+  c = 0.355 +0.355
+  ```
 - A parameter is passed on the command line to define what type of fractal will be
 displayed in a window.
   - You can handle more parameters to use them as rendering options.
