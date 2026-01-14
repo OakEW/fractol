@@ -18,7 +18,6 @@ int	animate(void *param)
 	int		x;
 	int		y;
 	int		idx;
-	int		color;
 
 	f = (t_data *)param;
 	if (f->animate < 0)
@@ -32,9 +31,8 @@ int	animate(void *param)
 		while (y < f->h)
 		{
 			idx = y * f->w + x;
-			color = f->palette[f->color_index[idx]];
-			*(unsigned int *)(f->addr + (y * f->line_length + x * \
-				(f->bits_per_pixel / 8))) = color;
+			*(unsigned int *)(f->addr + (y * f->line_length
+				+ x * (f->bits_per_pixel / 8))) = f->palette[f->color_index[idx]];
 			y++;
 		}
 		x++;
