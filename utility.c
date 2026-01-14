@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 15:00:41 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/14 15:56:31 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/14 18:48:08 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,13 @@ int	ft_strcmp(const char *s1, const char *s2)
 
 void	clean_up(t_data *fractol)
 {
-	mlx_destroy_image(fractol->mlx, fractol->img);
-	mlx_destroy_window(fractol->mlx, fractol->win);
-	mlx_destroy_display(fractol->mlx);
-	free (fractol->mlx);
+	if (fractol->img)
+		mlx_destroy_image(fractol->mlx, fractol->img);
+	if (fractol->win)
+		mlx_destroy_window(fractol->mlx, fractol->win);
+	if (fractol->mlx)
+	{
+		mlx_destroy_display(fractol->mlx);
+		free (fractol->mlx);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:53:54 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/14 18:13:13 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/14 18:50:20 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ t_data	init_all(char **argv)
 		exit (1);
 	fractol.win = mlx_new_window(fractol.mlx, fractol.w, fractol.h, argv[1]);
 	if (!fractol.win)
+	{
+		free (fractol.mlx);
 		exit (2);
+	}
 	fractol.img = mlx_new_image(fractol.mlx, fractol.w, fractol.h);
 	if (!fractol.img)
 		exit (3);
