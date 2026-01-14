@@ -74,8 +74,7 @@ void	color_pix(t_data *fractol, int x, int y, int iteration)
 		color = 0x00100030;
 	dst = fractol->addr + (y * fractol->line_length
 			+ x * (fractol->bits_per_pixel / 8));
-	if (*(unsigned int *)dst != (unsigned int)color)
-		*(unsigned int *)dst = (unsigned int)color;
+	*(unsigned int *)dst = (unsigned int)color;
 }
 
 void	ft_render(t_data *fractol)
