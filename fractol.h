@@ -42,6 +42,7 @@ typedef struct s_data
 	double			shift;
 	int				animate;
 	int				palette_set;
+	int				*iters;
 }	t_data;
 
 double	ft_atof(const char *nptr);
