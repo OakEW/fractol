@@ -42,7 +42,6 @@ typedef struct s_data
 	double			shift;
 	int				animate;
 	int				palette_set;
-	int             *iters;
     int             *color_index;
 }	t_data;
 
