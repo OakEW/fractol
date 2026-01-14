@@ -29,7 +29,8 @@ t_data	init_help(t_data *fractol)
 	fractol->animate = 1;
 	fractol->palette_set = 1;
 	fractol.iters = malloc(sizeof(int) * fractol.w * fractol.h);
-	if (!fractol.iters)
+	fractol.color_index = malloc(sizeof(int) * fractol.w * fractol.h);
+	if (!fractol.iters || !fractol.color_index)
 	{
     	clean_up(&fractol);
     	exit(5);
