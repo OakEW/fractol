@@ -72,9 +72,7 @@ void	color_pix(t_data *fractol, int x, int y, int iteration)
 	int		i;
 
 	i = iteration;
-	if (fractol->set != 2)
-		i = 10.0 * sqrt((double)iteration);
-	color = fractol->palette[i % 256];
+	color = fractol->palette[fractol->color_index[y * fractol->w + x]];
 	if (fractol->set != 2 && iteration == fractol->max_iter
 		&& fractol->palette_set > 0)
 		color = 0x00100030;
@@ -104,12 +102,12 @@ void	ft_render(t_data *fractol)
 				iteration = make_julia(fractol, x, y);
 			else if (fractol->set == 1)
 				iteration = make_mandelbrot(fractol, x, y);
-			idx = y * f->w + x;
+			idx = y * fractol->w + x;
 			cidx = iteration % 256;
-			if (f->set != 2)
+			if (fractol->set != 2)
 				cidx = (int)(10.0 * sqrt(iteration)) % 256;
-			f->color_index[idx] = cidx;
-			color_pix(f, x, y, iteration);
+			fractol->color_index[idx] = cidx;
+			color_pix(fractol, x, y, iteration);
 			y++;
 		}
 		x++;
