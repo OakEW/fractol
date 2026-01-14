@@ -67,11 +67,20 @@ You will get some extra points with the following features:
 referenced online).
 - The zoom follows the actual mouse position.
 - In addition to zooming, allow moving the view using the arrow keys.
-- Make the color range shift.
+- Make the color range shift. 
+
+  - Offer one more set : `multibrot4`
+  - Zoom follows mouse position
+  - `arrow keys` Allow view moving
+  - Color auto shifts
+  - `S` stop / restart color shifting
+  - `A` & `D` shift colors
+  - `W` switch between Color / B&W
+  - `Mouse center click` recenter image
 
 ## Resources
 
-Regarding **AI** : AI is used to assist understanding the math behind fractol formula.
+Regarding **AI** : AI is used to assist understanding the math and choosing fractol formula (for example: the calculation of fractols, the escape condition and why pix need to be mapped to |1| * scale), as well as fine tunning some of the formula as such smoother color grident (using sin to get smooth waves).
 
 >[**fract-ol: creating graphically beautiful fractals**](https://medium.com/@leogaudin/fract-ol-creating-graphically-beautiful-fractals-6664b6b045b5) *by Léo Gaudin*
 
