@@ -15,19 +15,32 @@
 int	animate(void *param)
 {
 	t_data	*f;
-	double	n;
+	int		x;
+	int		y;
+	int		idx;
+	int		color;
 
-	n = 0.03;
 	f = (t_data *)param;
-	if (f->set == 1)
-		n = 0.04;
-	else if (f->set == 3)
-		n = 0.06;
 	if (f->animate < 0)
 		return (0);
-	f->shift += n;
+	f->shift += 0.03;
 	rainbow_palette(f);
 	ft_render(f);
+	x = 0;
+	while (x < f->w)
+	{
+		y = 0;
+		while (y < f->h)
+		{
+			idx = y * f->w + x;
+			color = f->palette[f->color_index[idx]];
+			*(unsigned int *)(f->addr + (y * f->line_length + x * \
+				(f->bits_per_pixel / 8))) = color;
+			y++;
+		}
+		x++;
+	}
+	mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
 	return (0);
 }
 
