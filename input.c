@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:53:54 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/14 16:55:49 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/14 17:29:09 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,9 @@ int	close_x(t_data *fractol)
 	return (0);
 }
 
-int	key_esc(int key, t_data *fractol)
+int	key_do_1(int key, t_data *fractol)
 {
-	if (key == 65307)
-		mlx_loop_end(fractol->mlx);
-	return (0);
-}
-
-int	key_do(int key, t_data *fractol)
-{
-	if (key == 115)
-		fractol->animate *= -1;
-	else if (key == 97 || key == 100 || key == 119)
+	if (key == 97 || key == 100 || key == 119)
 	{
 		if (key == 119)
 			fractol->palette_set *= -1;
@@ -38,7 +29,25 @@ int	key_do(int key, t_data *fractol)
 		else if (key == 97)
 			fractol->shift -= 0.1;
 		rainbow_palette(fractol);
+		ft_render(fractol);
 	}
+	else if (key == 65307)
+		mlx_loop_end(fractol->mlx);
+	return (0);
+}
+
+int	key_do_2(int key, t_data *fractol)
+{
+	if (key == 105)
+		fractol->ix += 0.01;
+	else if (key == 107)
+		fractol->ix -= 0.01;
+	else if (key == 111)
+		fractol->iy += 0.01;
+	else if (key == 108)
+		fractol->iy -= 0.01;
+	else if (key == 115)
+		fractol->animate *= -1;
 	else if (key == 65361)
 		fractol->off_x += 0.1 / fractol->zoom;
 	else if (key == 65363)
@@ -55,8 +64,8 @@ int	key_do(int key, t_data *fractol)
 
 int	key_do_all(int key, t_data *fractol)
 {
-	key_esc(key, fractol);
-	key_do(key, fractol);
+	key_do_1(key, fractol);
+	key_do_2(key, fractol);
 	return (0);
 }
 

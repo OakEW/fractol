@@ -76,6 +76,7 @@ referenced online).
   - `S` stop / restart color shifting
   - `A` & `D` shift colors
   - `W` switch between Color / B&W
+  - `I` `K` `O` `L` change the shape for julia set
   - `Mouse center click` recenter image
 
 ## Resources
