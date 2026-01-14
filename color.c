@@ -43,23 +43,26 @@ int	animate(void *param)
 
 void	rainbow_palette(t_data *fractol)
 {
-	int		i;
+	double		i;
+	int			x;
 	int		r;
 	int		g;
 	int		b;
 	int		n;
 
-	i = 0;
+	i = 0.0;
+	x = 0;
 	n = 2;
 	if (fractol->palette_set < 0)
 		n = 0;
-	while (i < 256)
+	while (x < 256)
 	{
-		r = (int)(127 * (1 + sin(0.04 * i + fractol->shift)));
-		g = (int)(127 * (1 + sin(0.04 * i + fractol->shift + n)));
-		b = (int)(127 * (1 + sin(0.04 * i + fractol->shift + n + n)));
-		fractol->palette[i] = (r << 16) | (g << 8) | b;
-		i++;
+		r = (int)(127 * (1 + sin(i + fractol->shift)));
+		g = (int)(127 * (1 + sin(i + fractol->shift + n)));
+		b = (int)(127 * (1 + sin(i + fractol->shift + n + n)));
+		fractol->palette[x] = (r << 16) | (g << 8) | b;
+		i += 0.04;
+		x++;
 	}
 }
 
