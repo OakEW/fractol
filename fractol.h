@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:54:03 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/14 15:59:55 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/14 16:49:33 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,12 @@ void	make_julia(t_data *fractol, int x, int y);
 void	make_mandelbrot(t_data *fractol, int x, int y);
 void	make_multibrot4(t_data *fractol, int x, int y);
 
-int		key_do(int keycode, t_data *fractol);
 int		close_x(t_data *fractol);
-int		mouse_do(int mousecode, int x, int y, t_data *fractol);
+int		key_esc(int key, t_data *fractol);
+int		key_do(int key, t_data *fractol);
+int		key_do_all(int key, t_data *fractol);
+int		mouse_do(int mousecode, int x, int y, t_data *f);
+
 t_data	init_all(char **argv);
 
 #endif

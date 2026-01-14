@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:53:57 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/14 16:12:28 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/14 16:59:16 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ void	color_pix(t_data *fractol, int x, int y, int iteration)
 	if (fractol->set != 2)
 		i = 10.0 * sqrt((double)iteration);
 	color = fractol->palette[i % 256];
-	if (fractol->set != 2 && iteration == fractol->max_iter)
+	if (fractol->set != 2 && iteration == fractol->max_iter
+		&& fractol->palette_set > 0)
 		color = 0x00100030;
 	dst = fractol->addr + (y * fractol->line_length
 			+ x * (fractol->bits_per_pixel / 8));
