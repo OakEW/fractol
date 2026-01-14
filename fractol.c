@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:53:54 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/14 18:50:20 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/14 18:59:10 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,11 @@ t_data	init_all(char **argv)
 	}
 	fractol.img = mlx_new_image(fractol.mlx, fractol.w, fractol.h);
 	if (!fractol.img)
+	{
+		free (fractol.mlx);
+		free (fractol.win);
 		exit (3);
+	}
 	fractol.addr = mlx_get_data_addr(fractol.img, &fractol.bits_per_pixel,
 			&fractol.line_length, &fractol.endian);
 	rainbow_palette(&fractol);
