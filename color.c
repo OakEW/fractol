@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:53:57 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/14 16:59:16 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/14 18:39:33 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,17 @@
 int	animate(void *param)
 {
 	t_data	*f;
+	double	n;
 
+	n = 0.03;
 	f = (t_data *)param;
+	if (f->set == 1)
+		n = 0.04;
+	else if (f->set == 3)
+		n = 0.06;
 	if (f->animate < 0)
 		return (0);
-	f->shift += 0.03;
+	f->shift += n;
 	rainbow_palette(f);
 	ft_render(f);
 	return (0);

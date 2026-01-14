@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:54:03 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/14 17:25:56 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/14 18:24:52 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int		key_do_2(int key, t_data *fractol);
 int		key_do_all(int key, t_data *fractol);
 int		mouse_do(int mousecode, int x, int y, t_data *f);
 
+t_data	init_help(t_data *fractol);
 t_data	init_all(char **argv);
 
 #endif
