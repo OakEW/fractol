@@ -42,7 +42,8 @@ typedef struct s_data
 	double			shift;
 	int				animate;
 	int				palette_set;
-	int				*iters;
+	int             *iters;
+    int             *color_index;
 }	t_data;
 
 double	ft_atof(const char *nptr);
@@ -57,9 +58,9 @@ void	color_pix(t_data *fractol, int x, int y, int iteration);
 void	ft_render(t_data *fractol);
 
 void	mapping(t_data *fractol, int x, int y);
-void	make_julia(t_data *fractol, int x, int y);
-void	make_mandelbrot(t_data *fractol, int x, int y);
-void	make_multibrot4(t_data *fractol, int x, int y);
+int		make_julia(t_data *fractol, int x, int y);
+int		make_mandelbrot(t_data *fractol, int x, int y);
+int		make_multibrot4(t_data *fractol, int x, int y);
 
 int		close_x(t_data *fractol);
 int		key_do_1(int key, t_data *fractol);
