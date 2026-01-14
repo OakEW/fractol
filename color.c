@@ -67,9 +67,7 @@ void	color_pix(t_data *fractol, int x, int y, int iteration)
 {
 	char	*dst;
 	int		color;
-	int		i;
 
-	i = iteration;
 	color = fractol->palette[fractol->color_index[y * fractol->w + x]];
 	if (fractol->set != 2 && iteration == fractol->max_iter
 		&& fractol->palette_set > 0)
