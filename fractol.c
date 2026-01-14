@@ -57,10 +57,10 @@ t_data	init_all(char **argv)
 	fractol.addr = mlx_get_data_addr(fractol.img, &fractol.bits_per_pixel,
 			&fractol.line_length, &fractol.endian);
 	if (!fractol.addr)
-{
-	clean_up(&fractol);
-	exit(4);
-}
+	{
+		clean_up(&fractol);
+		exit(4);
+	}
 	rainbow_palette(&fractol);
 	return (fractol);
 }
