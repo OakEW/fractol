@@ -25,7 +25,6 @@ int	animate(void *param)
 		return (0);
 	f->shift += 0.03;
 	rainbow_palette(f);
-	ft_render(f);
 	x = 0;
 	while (x < f->w)
 	{
@@ -106,7 +105,6 @@ void	ft_render(t_data *fractol)
 			else if (fractol->set == 1)
 				iteration = make_mandelbrot(fractol, x, y);
 			idx = y * f->w + x;
-			f->iters[idx] = iteration;
 			cidx = iteration % 256;
 			if (f->set != 2)
 				cidx = (int)(10.0 * sqrt(iteration)) % 256;
