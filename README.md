@@ -69,7 +69,7 @@ referenced online).
 - In addition to zooming, allow moving the view using the arrow keys.
 - Make the color range shift. 
 
-  - Offer one more set : `multibrot4`
+  - Offer three set :  `mandelbrot` `julia` `multibrot4`
   - Zoom follows mouse position
   - `arrow keys` Allow view moving
   - Color auto shifts
