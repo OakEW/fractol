@@ -24,7 +24,7 @@ void	mapping(t_data *f, int x, int y)
 // z(n+1) = z(n)^2 + c;
 // z = f->re + f->im * i  |  f->re f->im mapping(x, y);
 // c = a + b * i          |  a = f->ix = argv[2] , b = f->iy = argv[3];
-void	make_julia(t_data *f, int x, int y)
+int	make_julia(t_data *f, int x, int y)
 {
 	double	tmp;
 	int		i;
@@ -38,13 +38,13 @@ void	make_julia(t_data *f, int x, int y)
 		f->re = tmp;
 		i++;
 	}
-	color_pix(f, x, y, i);
+	return(i);
 }
 
 // z(n+1) = z(n)^2 + c;
 // z(0) = 0 + 0 * i;      |  zx zy;
 // c = f->re + f->im * i  |  f->re f->im mapping(x, y);
-void	make_mandelbrot(t_data *f, int x, int y)
+int	make_mandelbrot(t_data *f, int x, int y)
 {
 	double	tmp;
 	int		i;
@@ -62,13 +62,13 @@ void	make_mandelbrot(t_data *f, int x, int y)
 		zx = tmp;
 		i++;
 	}
-	color_pix(f, x, y, i);
+	return(i);
 }
 
 // z(n+1) = z(n)^4 + c;
 // z(0) = 0 + 0 * i;      |  zx zy;
 // c = f->re + f->im * i  |  f->re f->im mapping(x, y);
-void	make_multibrot4(t_data *f, int x, int y)
+int	make_multibrot4(t_data *f, int x, int y)
 {
 	double	zx;
 	double	zy;
@@ -88,5 +88,5 @@ void	make_multibrot4(t_data *f, int x, int y)
 		zy = b + f->im;
 		i++;
 	}
-	color_pix(f, x, y, i);
+	return(i);
 }
