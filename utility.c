@@ -103,8 +103,6 @@ int	ft_strcmp(const char *s1, const char *s2)
 
 void	clean_up(t_data *fractol)
 {
-	if (fractol->iters)
-		free(fractol->iters);
 	if (fractol->color_index)
 		free(fractol->color_index);
 	if (fractol->img)
