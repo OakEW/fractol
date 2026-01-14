@@ -42,16 +42,13 @@ t_data	init_all(char **argv)
 	fractol.win = mlx_new_window(fractol.mlx, fractol.w, fractol.h, argv[1]);
 	if (!fractol.win)
 	{
-		mlx_destroy_display(fractol.mlx);
-		free (fractol.mlx);
+		clean_up(&fractol);
 		exit (2);
 	}
 	fractol.img = mlx_new_image(fractol.mlx, fractol.w, fractol.h);
 	if (!fractol.img)
 	{
-		mlx_destroy_window(fractol.mlx, fractol.win);
-		mlx_destroy_display(fractol.mlx);
-		free (fractol.mlx);
+		clean_up(&fractol);
 		exit (3);
 	}
 	fractol.addr = mlx_get_data_addr(fractol.img, &fractol.bits_per_pixel,
