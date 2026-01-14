@@ -77,35 +77,31 @@ void	color_pix(t_data *fractol, int x, int y, int iteration)
 	*(unsigned int *)dst = (unsigned int)color;
 }
 
-void	ft_render(t_data *fractol)
+void	ft_render(t_data *f)
 {
 	int	x;
 	int	y;
-	int	idx;
-	int	iteration;
-	int	cidx;
+	int	i;
 
 	x = 0;
-	while (x < fractol->w)
+	while (x < f->w)
 	{
 		y = 0;
-		while (y < fractol->h)
+		while (y < f->h)
 		{
-			if (fractol->set == 3)
-				iteration = make_multibrot4(fractol, x, y);
-			else if (fractol->set == 2)
-				iteration = make_julia(fractol, x, y);
-			else if (fractol->set == 1)
-				iteration = make_mandelbrot(fractol, x, y);
-			idx = y * fractol->w + x;
-			cidx = iteration % 256;
-			if (fractol->set != 2)
-				cidx = (int)(10.0 * sqrt(iteration)) % 256;
-			fractol->color_index[idx] = cidx;
-			color_pix(fractol, x, y, iteration);
+			if (f->set == 3)
+				i = make_multibrot4(f, x, y);
+			else if (f->set == 2)
+				i = make_julia(f, x, y);
+			else if (f->set == 1)
+				i = make_mandelbrot(f, x, y);
+			f->color_index[y * f->w + x] =  i % 256;
+			if (f->set != 2)
+				f->color_index[y * f->w + x] = (int)(10.0 * sqrt(i)) % 256;
+			color_pix(f, x, y, i);
 			y++;
 		}
 		x++;
 	}
-	mlx_put_image_to_window(fractol->mlx, fractol->win, fractol->img, 0, 0);
+	mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
 }
