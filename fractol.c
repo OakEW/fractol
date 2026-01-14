@@ -28,6 +28,12 @@ t_data	init_help(t_data *fractol)
 	fractol->shift = 1.3;
 	fractol->animate = 1;
 	fractol->palette_set = 1;
+	fractol.iters = malloc(sizeof(int) * fractol.w * fractol.h);
+	if (!fractol.iters)
+	{
+    	clean_up(&fractol);
+    	exit(5);
+	}
 	return (*fractol);
 }
 
