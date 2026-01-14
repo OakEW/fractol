@@ -76,6 +76,9 @@ void	ft_render(t_data *fractol)
 {
 	int	x;
 	int	y;
+	int	idx;
+	int	iteration;
+	int	cidx;
 
 	x = 0;
 	while (x < fractol->w)
@@ -84,11 +87,18 @@ void	ft_render(t_data *fractol)
 		while (y < fractol->h)
 		{
 			if (fractol->set == 3)
-				make_multibrot4(fractol, x, y);
-			if (fractol->set == 2)
-				make_julia(fractol, x, y);
-			if (fractol->set == 1)
-				make_mandelbrot(fractol, x, y);
+				iteration = make_multibrot4(fractol, x, y);
+			else if (fractol->set == 2)
+				iteration = make_julia(fractol, x, y);
+			else if (fractol->set == 1)
+				iteration = make_mandelbrot(fractol, x, y);
+			idx = y * f->w + x;
+			f->iters[idx] = iteration;
+			cidx = iteration % 256;
+			if (f->set != 2)
+				cidx = (int)(10.0 * sqrt(iteration)) % 256;
+			f->color_index[idx] = cidx;
+			color_pix(f, x, y, iteration);
 			y++;
 		}
 		x++;
