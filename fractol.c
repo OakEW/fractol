@@ -48,8 +48,8 @@ t_data	init_all(char **argv)
 	fractol.img = mlx_new_image(fractol.mlx, fractol.w, fractol.h);
 	if (!fractol.img)
 	{
-		free (fractol.mlx);
-		free (fractol.win);
+		mlx_destroy_window(fractol.mlx, fractol.win);
+		mlx_destroy_display(fractol.mlx);
 		exit (3);
 	}
 	fractol.addr = mlx_get_data_addr(fractol.img, &fractol.bits_per_pixel,
