@@ -6,13 +6,13 @@
 #    By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/14 15:26:24 by ywang2            #+#    #+#              #
-#    Updated: 2026/01/14 16:48:09 by ywang2           ###   ########.fr        #
+#    Updated: 2026/01/15 13:46:01 by ywang2           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC = utility.c color.c formula.c input.c fractol.c
 
-OBJS =$(SRC:.c=.o)
+OBJS = $(SRC:.c=.o)
 
 NAME = fractol
 
@@ -33,7 +33,7 @@ $(NAME): $(OBJS) $(MLX_LIB)
 	$(CC) $(FLAGS) $(OBJS) -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -lz -o $(NAME)
 
 %.o: %.c
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(FLAGS) -I$(MLX_DIR) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)
