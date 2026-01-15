@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:53:54 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/15 18:34:32 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/15 19:24:34 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ void	init_help(t_data *fractol)
 	fractol->autoj = -1;
 	fractol->iter = malloc(sizeof(int) * fractol->w * fractol->h);
 	if (!fractol->iter)
-		handle_errors(fractol);
+	{
+		free(fractol->iter);
+		exit (5);
+	}
 }
 
 void	handle_errors(t_data *fractol)
