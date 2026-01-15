@@ -16,9 +16,6 @@ void	mapping(t_data *f, int x, int y)
 {
 	f->re = (x - f->w / 2) / (0.5 * f->zoom * f->h) + f->off_x;
 	f->im = (y - f->h / 2) / (0.5 * f->zoom * f->h) + f->off_y;
-	f->max_iter = 100 + (int)(log2(f->zoom) * 50);
-	if (f->max_iter < 100)
-		f->max_iter = 100;
 }
 
 // z(n+1) = z(n)^2 + c;
