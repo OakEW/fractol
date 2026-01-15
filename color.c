@@ -41,6 +41,8 @@ int	animate(void *param)
 	int		y;
 
 	f = (t_data *)param;
+	if (f->gradient < 0 && f->autoj < 0)
+		return (0);
 	if (f->gradient > 0)
 		f->shift += 0.05;
 	x = 0;
