@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:53:54 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/15 11:05:12 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/15 12:37:33 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void	init_help(t_data *fractol)
 	fractol->off_x = 0.0;
 	fractol->off_y = 0.0;
 	fractol->max_iter = 100;
-	fractol->shift = 1.3;
+	fractol->shift = 1.0;
 	fractol->animate = 1;
 	fractol->palette_set = 1;
-	fractol->color_index = malloc(sizeof(int) * fractol->w * fractol->h);
-	if (!fractol->color_index)
+	fractol->iter = malloc(sizeof(int) * fractol->w * fractol->h);
+	if (!fractol->iter)
 		handle_errors(fractol);
 }
 
@@ -57,7 +57,6 @@ t_data	init_all(char **argv)
 			&fractol.line_length, &fractol.endian);
 	if (!fractol.addr)
 		handle_errors(&fractol);
-	rainbow_palette(&fractol);
 	return (fractol);
 }
 
@@ -78,10 +77,10 @@ int	main(int argc, char **argv)
 	if (ft_strcmp(argv[1], "multibrot4") == 0)
 		fractol.set = 3;
 	ft_render(&fractol);
-	mlx_hook(fractol.win, 17, 0, close_x, &fractol);
-	mlx_hook(fractol.win, 2, 1L << 0, key_do_all, &fractol);
-	mlx_hook(fractol.win, 4, 1L << 2, mouse_do, &fractol);
 	mlx_loop_hook(fractol.mlx, animate, &fractol);
+	mlx_hook(fractol.win, 17, 0, close_x, &fractol);
+	mlx_key_hook(fractol.win, key_do_all, &fractol);
+	mlx_mouse_hook(fractol.win, mouse_do, &fractol);
 	mlx_loop(fractol.mlx);
 	clean_up(&fractol);
 }

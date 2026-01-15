@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 15:00:41 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/14 18:48:08 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/15 12:08:15 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,8 @@ int	ft_strcmp(const char *s1, const char *s2)
 
 void	clean_up(t_data *fractol)
 {
-	if (fractol->color_index)
-		free(fractol->color_index);
+	if (fractol->iter)
+		free(fractol->iter);
 	if (fractol->img)
 		mlx_destroy_image(fractol->mlx, fractol->img);
 	if (fractol->win)

@@ -467,7 +467,7 @@ struct s_col_name mlx_col_name[] =
  { "darkorange2" , 0xee7600 },
  { "darkorange3" , 0xcd6600 },
  { "darkorange4" , 0x8b4500 },
- { "coral1" , 0xff7256 },
+ { "coral1" , 0xff7157 },
  { "coral2" , 0xee6a50 },
  { "coral3" , 0xcd5b45 },
  { "coral4" , 0x8b3e2f },

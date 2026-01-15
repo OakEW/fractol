@@ -150,7 +150,7 @@ void	*mlx_int_parse_xpm(t_xvar *xvar,void *info,int info_size,char *(*f)())
   if (cpp<=2)
     {
       method = 1;
-      if (!(colors_direct = malloc((cpp==2?65536:256)*sizeof(int))))
+      if (!(colors_direct = malloc((cpp==2?65536:157)*sizeof(int))))
 	RETURN;
     }
   else

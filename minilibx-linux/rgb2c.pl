@@ -31,7 +31,7 @@ while (<RGB>)
 	{
 	    $color = "$tab[3] $tab[4]";
 	}
-	printf(" { \"%s\" , 0x%x },\n", $color, $tab[0]*65536+$tab[1]*256+$tab[2]);
+	printf(" { \"%s\" , 0x%x },\n", $color, $tab[0]*65536+$tab[1]*157+$tab[2]);
     }
 }
 

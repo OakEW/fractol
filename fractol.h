@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:54:03 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/15 11:10:41 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/15 12:47:19 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef struct s_data
 	double			iy;
 	double			re;
 	double			im;
-	unsigned int	palette[256];
 	int				set;
 	int				max_iter;
 	double			off_x;
@@ -42,34 +41,37 @@ typedef struct s_data
 	double			shift;
 	int				animate;
 	int				palette_set;
-	int				*color_index;
+	int				*iter;
 }	t_data;
 
-double	ft_atof(const char *nptr);
-int		is_valid(char *nptr);
-int		check_arg(int argc, char **argv);
-int		ft_strcmp(const char *s1, const char *s2);
-void	clean_up(t_data *fractol);
+//utility
+double			ft_atof(const char *nptr);
+int				is_valid(char *nptr);
+int				check_arg(int argc, char **argv);
+int				ft_strcmp(const char *s1, const char *s2);
+void			clean_up(t_data *fractol);
 
-int		animate(void *param);
-void	rainbow_palette(t_data *fractol);
-void	color_pix(t_data *fractol, int x, int y, int iteration);
-void	ft_render(t_data *fractol);
+//color
+int				animate(void *param);
+unsigned int	make_color(t_data *fractol, int iteration);
+void			ft_render(t_data *fractol);
 
-void	mapping(t_data *fractol, int x, int y);
-int		make_julia(t_data *fractol, int x, int y);
-int		make_mandelbrot(t_data *fractol, int x, int y);
-int		make_multibrot4(t_data *fractol, int x, int y);
+//formula
+void			mapping(t_data *fractol, int x, int y);
+int				make_julia(t_data *fractol, int x, int y);
+int				make_mandelbrot(t_data *fractol, int x, int y);
+int				make_multibrot4(t_data *fractol, int x, int y);
 
-int		close_x(t_data *fractol);
-int		key_do_1(int key, t_data *fractol);
-int		key_do_2(int key, t_data *fractol);
-int		key_do_all(int key, t_data *fractol);
-int		mouse_do(int mousecode, int x, int y, t_data *f);
+//input
+int				close_x(t_data *fractol);
+int				key_do_1(int key, t_data *fractol);
+int				key_do_2(int key, t_data *fractol);
+int				key_do_all(int key, t_data *fractol);
+int				mouse_do(int mousecode, int x, int y, t_data *f);
 
-void	init_help(t_data *fractol);
-t_data	init_all(char **argv);
-void	handle_errors(t_data *fractol);
-t_data	init_all(char **argv);
+//fractol
+void			init_help(t_data *fractol);
+t_data			init_all(char **argv);
+void			handle_errors(t_data *fractol);
 
 #endif

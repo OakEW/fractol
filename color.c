@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:53:57 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/15 11:09:55 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/15 12:25:24 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	animate(void *param)
 	if (f->animate < 0)
 		return (0);
 	f->shift += 0.01;
-	rainbow_palette(f);
 	x = 0;
 	while (x < f->w)
 	{
@@ -31,7 +30,7 @@ int	animate(void *param)
 		{
 			*(unsigned int *)(f->addr + (y * f->line_length + x
 						* (f->bits_per_pixel / 8)))
-				= f->palette[f->color_index[y * f->w + x]];
+				= make_color(f, f->iter[y * f->w + x]);
 			y++;
 		}
 		x++;
@@ -40,40 +39,26 @@ int	animate(void *param)
 	return (0);
 }
 
-void	rainbow_palette(t_data *fractol)
+unsigned int	make_color(t_data *f, int i)
 {
-	int		x;
 	int		r;
 	int		g;
 	int		b;
 	int		n;
+	double	x;
 
-	x = 0;
+	if (f->set != 2 && i >= f->max_iter && f->palette_set > 0)
+		return (0x00100030);
+	x = (double)i / f->max_iter;
+	if (f->set != 2)
+		x = sqrt(x);
 	n = 2;
-	if (fractol->palette_set < 0)
+	if (f->palette_set < 0)
 		n = 0;
-	while (x < 256)
-	{
-		r = (int)(127 * (1 + sin(x * 0.04 + fractol->shift)));
-		g = (int)(127 * (1 + sin(x * 0.04 + fractol->shift + n)));
-		b = (int)(127 * (1 + sin(x * 0.04 + fractol->shift + n + n)));
-		fractol->palette[x] = (r << 16) | (g << 8) | b;
-		x++;
-	}
-}
-
-void	color_pix(t_data *fractol, int x, int y, int iteration)
-{
-	char	*dst;
-	int		color;
-
-	color = fractol->palette[fractol->color_index[y * fractol->w + x]];
-	if (fractol->set != 2 && iteration == fractol->max_iter
-		&& fractol->palette_set > 0)
-		color = 0x00100030;
-	dst = fractol->addr + (y * fractol->line_length
-			+ x * (fractol->bits_per_pixel / 8));
-	*(unsigned int *)dst = (unsigned int)color;
+	r = (int)(127 * (1 + sin(x * 6 + f->shift)));
+	g = (int)(127 * (1 + sin(x * 6 + f->shift + n)));
+	b = (int)(127 * (1 + sin(x * 6 + f->shift + n + n)));
+	return ((r << 16) | (g << 8) | b);
 }
 
 void	ft_render(t_data *f)
@@ -94,10 +79,10 @@ void	ft_render(t_data *f)
 				i = make_julia(f, x, y);
 			else if (f->set == 1)
 				i = make_mandelbrot(f, x, y);
-			f->color_index[y * f->w + x] = i % 256;
-			if (f->set != 2)
-				f->color_index[y * f->w + x] = (int)(10.0 * sqrt(i)) % 256;
-			color_pix(f, x, y, i);
+			f->iter[y * f->w + x] = i;
+			*(unsigned int *)(f->addr + (y * f->line_length + x
+						* (f->bits_per_pixel / 8)))
+				= make_color(f, f->iter[y * f->w + x]);
 			y++;
 		}
 		x++;
