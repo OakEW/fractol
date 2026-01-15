@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:53:57 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/15 18:51:57 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/15 22:27:38 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int	animate(void *param)
 	f = (t_data *)param;
 	if (f->gradient < 0 && f->autoj < 0)
 		return (0);
+	if (f->autoj > 0 && f->set == 2)
+		auto_julia(f);
 	if (f->gradient > 0)
 		f->shift += 0.05;
 	x = 0;
@@ -51,15 +53,12 @@ int	animate(void *param)
 		y = 0;
 		while (y < f->h)
 		{
-			*(unsigned int *)(f->addr + (y * f->line_length + x
-						* (f->bits_per_pixel / 8)))
+			((unsigned int *)f->addr)[y * (f->line_length / 4) + x]
 				= make_color(f, f->iter[y * f->w + x]);
 			y++;
 		}
 		x++;
 	}
-	if (f->autoj > 0 && f->set == 2)
-		auto_julia(f);
 	mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
 	return (0);
 }
@@ -111,14 +110,14 @@ void	ft_render(t_data *f)
 	int	y;
 	int	i;
 
-	x = 0;
+	x = -1;
 	f->max_iter = 100 + (int)(log2(f->zoom) * 50);
 	if (f->max_iter < 100)
 		f->max_iter = 100;
-	while (x < f->w)
+	while (++x < f->w)
 	{
-		y = 0;
-		while (y < f->h)
+		y = -1;
+		while (++y < f->h)
 		{
 			if (f->set == 3)
 				i = make_multibrot4(f, x, y);
@@ -127,12 +126,9 @@ void	ft_render(t_data *f)
 			else if (f->set == 1)
 				i = make_mandelbrot(f, x, y);
 			f->iter[y * f->w + x] = i;
-			*(unsigned int *)(f->addr + (y * f->line_length + x
-						* (f->bits_per_pixel / 8)))
+			((unsigned int *)f->addr)[y * (f->line_length / 4) + x]
 				= make_color(f, f->iter[y * f->w + x]);
-			y++;
 		}
-		x++;
 	}
 	mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
 }
