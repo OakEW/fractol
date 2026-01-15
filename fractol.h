@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:54:03 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/14 23:48:18 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/15 11:10:41 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_data
 	double			shift;
 	int				animate;
 	int				palette_set;
-    int             *color_index;
+	int				*color_index;
 }	t_data;
 
 double	ft_atof(const char *nptr);
@@ -68,6 +68,8 @@ int		key_do_all(int key, t_data *fractol);
 int		mouse_do(int mousecode, int x, int y, t_data *f);
 
 void	init_help(t_data *fractol);
+t_data	init_all(char **argv);
+void	handle_errors(t_data *fractol);
 t_data	init_all(char **argv);
 
 #endif

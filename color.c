@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:53:57 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/14 18:39:33 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/15 11:09:55 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,11 @@ int	animate(void *param)
 	t_data	*f;
 	int		x;
 	int		y;
-	int		idx;
 
 	f = (t_data *)param;
 	if (f->animate < 0)
 		return (0);
-	f->shift += 0.03;
+	f->shift += 0.01;
 	rainbow_palette(f);
 	x = 0;
 	while (x < f->w)
@@ -30,9 +29,9 @@ int	animate(void *param)
 		y = 0;
 		while (y < f->h)
 		{
-			idx = y * f->w + x;
-			*(unsigned int *)(f->addr + (y * f->line_length
-				+ x * (f->bits_per_pixel / 8))) = f->palette[f->color_index[idx]];
+			*(unsigned int *)(f->addr + (y * f->line_length + x
+						* (f->bits_per_pixel / 8)))
+				= f->palette[f->color_index[y * f->w + x]];
 			y++;
 		}
 		x++;
@@ -43,25 +42,22 @@ int	animate(void *param)
 
 void	rainbow_palette(t_data *fractol)
 {
-	double		i;
-	int			x;
+	int		x;
 	int		r;
 	int		g;
 	int		b;
 	int		n;
 
-	i = 0.0;
 	x = 0;
 	n = 2;
 	if (fractol->palette_set < 0)
 		n = 0;
 	while (x < 256)
 	{
-		r = (int)(127 * (1 + sin(i + fractol->shift)));
-		g = (int)(127 * (1 + sin(i + fractol->shift + n)));
-		b = (int)(127 * (1 + sin(i + fractol->shift + n + n)));
+		r = (int)(127 * (1 + sin(x * 0.04 + fractol->shift)));
+		g = (int)(127 * (1 + sin(x * 0.04 + fractol->shift + n)));
+		b = (int)(127 * (1 + sin(x * 0.04 + fractol->shift + n + n)));
 		fractol->palette[x] = (r << 16) | (g << 8) | b;
-		i += 0.04;
 		x++;
 	}
 }
@@ -98,7 +94,7 @@ void	ft_render(t_data *f)
 				i = make_julia(f, x, y);
 			else if (f->set == 1)
 				i = make_mandelbrot(f, x, y);
-			f->color_index[y * f->w + x] =  i % 256;
+			f->color_index[y * f->w + x] = i % 256;
 			if (f->set != 2)
 				f->color_index[y * f->w + x] = (int)(10.0 * sqrt(i)) % 256;
 			color_pix(f, x, y, i);

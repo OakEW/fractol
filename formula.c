@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:53:46 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/14 15:39:58 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/15 11:11:10 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	make_julia(t_data *f, int x, int y)
 		f->re = tmp;
 		i++;
 	}
-	return(i);
+	return (i);
 }
 
 // z(n+1) = z(n)^2 + c;
@@ -62,7 +62,7 @@ int	make_mandelbrot(t_data *f, int x, int y)
 		zx = tmp;
 		i++;
 	}
-	return(i);
+	return (i);
 }
 
 // z(n+1) = z(n)^4 + c;
@@ -88,5 +88,5 @@ int	make_multibrot4(t_data *f, int x, int y)
 		zy = b + f->im;
 		i++;
 	}
-	return(i);
+	return (i);
 }
