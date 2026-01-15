@@ -6,11 +6,33 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:53:57 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/15 12:25:24 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/15 13:32:33 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+unsigned int	make_color(t_data *f, int i)
+{
+	int		r;
+	int		g;
+	int		b;
+	int		n;
+	double	x;
+
+	if (f->set != 2 && i >= f->max_iter && f->palette_set > 0)
+		return (0x00100030);
+	x = (double)i / f->max_iter;
+	if (f->set != 2)
+		x = sqrt(x);
+	n = 2;
+	if (f->palette_set < 0)
+		n = 0;
+	r = (int)(127 * (1 + sin(x * 6 + f->shift)));
+	g = (int)(127 * (1 + sin(x * 6 + f->shift + n)));
+	b = (int)(127 * (1 + sin(x * 6 + f->shift + n + n)));
+	return ((r << 16) | (g << 8) | b);
+}
 
 int	animate(void *param)
 {
@@ -37,28 +59,6 @@ int	animate(void *param)
 	}
 	mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
 	return (0);
-}
-
-unsigned int	make_color(t_data *f, int i)
-{
-	int		r;
-	int		g;
-	int		b;
-	int		n;
-	double	x;
-
-	if (f->set != 2 && i >= f->max_iter && f->palette_set > 0)
-		return (0x00100030);
-	x = (double)i / f->max_iter;
-	if (f->set != 2)
-		x = sqrt(x);
-	n = 2;
-	if (f->palette_set < 0)
-		n = 0;
-	r = (int)(127 * (1 + sin(x * 6 + f->shift)));
-	g = (int)(127 * (1 + sin(x * 6 + f->shift + n)));
-	b = (int)(127 * (1 + sin(x * 6 + f->shift + n + n)));
-	return ((r << 16) | (g << 8) | b);
 }
 
 void	ft_render(t_data *f)

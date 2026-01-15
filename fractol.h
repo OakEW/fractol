@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:54:03 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/15 12:47:19 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/15 13:32:51 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ int				ft_strcmp(const char *s1, const char *s2);
 void			clean_up(t_data *fractol);
 
 //color
-int				animate(void *param);
 unsigned int	make_color(t_data *fractol, int iteration);
+int				animate(void *param);
 void			ft_render(t_data *fractol);
 
 //formula

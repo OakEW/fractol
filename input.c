@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:53:54 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/15 12:44:06 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/15 13:27:37 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	mouse_do(int mousecode, int x, int y, t_data *f)
 	double	m_im;
 	double	zoomer;
 
-	m_re = 2 * (x - f->w / 2.0) / (0.5 * f->zoom * f->w) + f->off_x;
+	m_re = (x - f->w / 2.0) / (0.5 * f->zoom * f->h) + f->off_x;
 	m_im = (y - f->h / 2.0) / (0.5 * f->zoom * f->h) + f->off_y;
 	if (mousecode == 2)
 	{
@@ -90,7 +90,7 @@ int	mouse_do(int mousecode, int x, int y, t_data *f)
 	else
 		return (0);
 	f->zoom *= zoomer;
-	f->off_x = m_re - 2 * (x - f->w / 2.0) / (0.5 * f->zoom * f->w);
+	f->off_x = m_re - (x - f->w / 2.0) / (0.5 * f->zoom * f->h);
 	f->off_y = m_im - (y - f->h / 2.0) / (0.5 * f->zoom * f->h);
 	ft_render(f);
 	return (0);

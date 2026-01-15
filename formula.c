@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:53:46 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/15 12:02:05 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/15 13:26:53 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	mapping(t_data *f, int x, int y)
 {
-	f->re = 2 * (x - f->w / 2) / (0.5 * f->zoom * f->w) + f->off_x;
+	f->re = (x - f->w / 2) / (0.5 * f->zoom * f->h) + f->off_x;
 	f->im = (y - f->h / 2) / (0.5 * f->zoom * f->h) + f->off_y;
 	f->max_iter = 100 + (int)(log2(f->zoom) * 50);
 	if (f->max_iter < 100)

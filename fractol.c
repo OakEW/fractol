@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:53:54 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/15 12:37:33 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/15 13:29:02 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	init_help(t_data *fractol)
 {
-	fractol->w = 1200;
-	fractol->h = 600;
+	fractol->w = 1600;
+	fractol->h = 900;
 	fractol->ix = 0.0;
 	fractol->iy = 0.0;
 	fractol->re = 0.0;
