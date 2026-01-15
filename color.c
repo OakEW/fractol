@@ -110,6 +110,9 @@ void	ft_render(t_data *f)
 	int	i;
 
 	x = 0;
+	f->max_iter = 100 + (int)(log2(f->zoom) * 50);
+	if (f->max_iter < 100)
+		f->max_iter = 100;
 	while (x < f->w)
 	{
 		y = 0;
