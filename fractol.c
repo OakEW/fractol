@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:53:54 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/15 13:29:02 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/15 17:08:26 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ void	init_help(t_data *fractol)
 	fractol->off_y = 0.0;
 	fractol->max_iter = 100;
 	fractol->shift = 1.0;
-	fractol->animate = 1;
+	fractol->gradient = 1;
 	fractol->palette_set = 1;
+	fractol->autoj = -1;
 	fractol->iter = malloc(sizeof(int) * fractol->w * fractol->h);
 	if (!fractol->iter)
 		handle_errors(fractol);

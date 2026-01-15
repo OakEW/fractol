@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:53:57 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/15 13:32:33 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/15 17:20:34 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,8 @@ int	animate(void *param)
 	int		y;
 
 	f = (t_data *)param;
-	if (f->animate < 0)
-		return (0);
-	f->shift += 0.01;
+	if (f->gradient > 0)
+		f->shift += 0.01;
 	x = 0;
 	while (x < f->w)
 	{
@@ -57,8 +56,58 @@ int	animate(void *param)
 		}
 		x++;
 	}
+	if (f->autoj > 0 && f->set == 2)
+		auto_julia(f);
 	mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
 	return (0);
+}
+
+void	recal_julia(t_data *f)
+{
+	double	t;
+	int		init;
+	double	r;
+
+	init = 0;
+	t = 0.0;
+	r = sqrt(f->ix * f->ix + f->iy * f->iy);
+	if (r < 0.5)
+		r = 0.5;
+	if (r > 0.85)
+		r = 0.85;
+	if (!init)
+	{
+		t = atan2(f->iy, f->ix);
+		init = 1;
+	}
+	t += 0.005;
+	f->ix = r * cos(t);
+	f->iy = r * sin(t);
+}
+
+void	auto_julia(t_data *f)
+{
+	int	x;
+	int	y;
+	int	i;
+
+	recal_julia(f);
+	x = 0;
+	while (x < f->w)
+	{
+		y = 0;
+		while (y < f->h)
+		{
+			mapping(f, x, y);
+			i = make_julia(f, x, y);
+			f->iter[y * f->w + x] = i;
+			*(unsigned int *)(f->addr + (y * f->line_length + x
+						* (f->bits_per_pixel / 8)))
+				= make_color(f, f->iter[y * f->w + x]);
+			y++;
+		}
+		x++;
+	}
 }
 
 void	ft_render(t_data *f)

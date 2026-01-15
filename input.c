@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:53:54 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/15 13:27:37 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/15 17:17:04 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,28 +25,16 @@ int	key_do_1(int key, t_data *fractol)
 		mlx_loop_end(fractol->mlx);
 		return (0);
 	}
-	if (key == 119)
+	else if (key == 119)
 		fractol->palette_set *= -1;
+	if (key == 112)
+		fractol->autoj *= -1;
 	else if (key == 115)
-		fractol->animate *= -1;
+		fractol->gradient *= -1;
 	else if (key == 100)
 		fractol->shift += 0.1;
 	else if (key == 97)
 		fractol->shift -= 0.1;
-	ft_render(fractol);
-	return (0);
-}
-
-int	key_do_2(int key, t_data *fractol)
-{
-	if (key == 105 && fractol->set == 2)
-		fractol->ix += 0.01;
-	else if (key == 107 && fractol->set == 2)
-		fractol->ix -= 0.01;
-	else if (key == 111 && fractol->set == 2)
-		fractol->iy += 0.01;
-	else if (key == 108 && fractol->set == 2)
-		fractol->iy -= 0.01;
 	else if (key == 65361)
 		fractol->off_x += 0.1 / fractol->zoom;
 	else if (key == 65363)
@@ -55,9 +43,21 @@ int	key_do_2(int key, t_data *fractol)
 		fractol->off_y += 0.1 / fractol->zoom;
 	else if (key == 65364)
 		fractol->off_y -= 0.1 / fractol->zoom;
-	else
-		return (0);
 	ft_render(fractol);
+	return (0);
+}
+
+int	key_do_2(int key, t_data *fractol)
+{
+	if (key == 105 && fractol->set == 2)
+		fractol->ix += 0.01;
+	else if (key == 111 && fractol->set == 2)
+		fractol->ix -= 0.01;
+	else if (key == 107 && fractol->set == 2)
+		fractol->iy += 0.01;
+	else if (key == 108 && fractol->set == 2)
+		fractol->iy -= 0.01;
+	animate(fractol);
 	return (0);
 }
 

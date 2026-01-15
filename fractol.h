@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:54:03 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/15 13:32:51 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/15 17:08:18 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,10 @@ typedef struct s_data
 	double			off_x;
 	double			off_y;
 	double			shift;
-	int				animate;
+	int				gradient;
 	int				palette_set;
 	int				*iter;
+	int				autoj;
 }	t_data;
 
 //utility
@@ -52,6 +53,8 @@ int				ft_strcmp(const char *s1, const char *s2);
 void			clean_up(t_data *fractol);
 
 //color
+void			recal_julia(t_data *f);
+void			auto_julia(t_data *f);
 unsigned int	make_color(t_data *fractol, int iteration);
 int				animate(void *param);
 void			ft_render(t_data *fractol);
