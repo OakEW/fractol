@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:53:57 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/15 17:20:34 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/15 17:52:26 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	animate(void *param)
 
 	f = (t_data *)param;
 	if (f->gradient > 0)
-		f->shift += 0.01;
+		f->shift += 0.05;
 	x = 0;
 	while (x < f->w)
 	{
