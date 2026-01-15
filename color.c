@@ -65,10 +65,9 @@ int	animate(void *param)
 void	recal_julia(t_data *f)
 {
 	static double	t;
-	int				init;
+	static int		init;
 	double			r;
 
-	init = 0;
 	r = sqrt(f->ix * f->ix + f->iy * f->iy);
 	if (!init)
 	{
@@ -93,7 +92,6 @@ void	auto_julia(t_data *f)
 		y = 0;
 		while (y < f->h)
 		{
-			mapping(f, x, y);
 			i = make_julia(f, x, y);
 			f->iter[y * f->w + x] = i;
 			*(unsigned int *)(f->addr + (y * f->line_length + x
