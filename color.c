@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:53:57 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/15 17:58:21 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/15 18:53:22 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,11 @@ int	animate(void *param)
 
 void	recal_julia(t_data *f)
 {
-	double	t;
-	int		init;
-	double	r;
+	static double	t;
+	int				init;
+	double			r;
 
 	init = 0;
-	t = 0.0;
 	r = sqrt(f->ix * f->ix + f->iy * f->iy);
 	if (!init)
 	{

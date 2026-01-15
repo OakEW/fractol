@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 15:00:41 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/15 12:08:15 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/15 18:08:12 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ double	ft_atof(const char *nptr)
 			x *= -1.0;
 	while (*nptr >= '0' && *nptr <= '9')
 		n = n * 10 + (*nptr++ - 48);
-	if (*nptr == '.' || *nptr == ',')
+	if (*nptr == '.')
 		nptr++;
 	while (*nptr >= '0' && *nptr <= '9')
 	{
@@ -54,7 +54,7 @@ int	is_valid(char *nptr)
 		nptr++;
 		i++;
 	}
-	if (*nptr == '.' || *nptr == ',')
+	if (*nptr == '.')
 		nptr++;
 	while (*nptr >= '0' && *nptr <= '9')
 	{
