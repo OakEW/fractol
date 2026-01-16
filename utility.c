@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 15:00:41 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/15 18:08:12 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/16 14:08:22 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,16 @@ int	is_valid(char *nptr)
 		nptr++;
 	if (*nptr == '+' || *nptr == '-')
 		nptr++;
-	while (*nptr >= '0' && *nptr <= '9')
-	{
+	while (*nptr >= '0' && *nptr <= '9' && ++i)
 		nptr++;
-		i++;
-	}
 	if (*nptr == '.')
-		nptr++;
-	while (*nptr >= '0' && *nptr <= '9')
 	{
+		if (i == 0)
+			return (0);
+		i = 0;
 		nptr++;
-		i++;
+		while (*nptr >= '0' && *nptr <= '9' && ++i)
+			nptr++;
 	}
 	while (*nptr && *nptr <= 32)
 		nptr++;
