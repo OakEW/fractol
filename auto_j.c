@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:53:57 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/16 12:19:57 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/16 13:21:50 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 void	recal_julia(t_data *f)
 {
-	static double	t;
 	static int		init;
-	double			r;
+	static double	c;
+	static double	s;
+	double			cos_o;
+	double			sin_o;
 
-	f->max_iter = 100 + (int)(log2(f->zoom) * 50);
-	if (f->max_iter < 100)
-		f->max_iter = 100;
-	r = sqrt(f->ix * f->ix + f->iy * f->iy);
 	if (!init)
 	{
-		t = atan2(f->iy, f->ix);
+		c = cos(0.002);
+		s = sin(0.002);
 		init = 1;
 	}
-	t += 0.005;
-	f->ix = r * cos(t);
-	f->iy = r * sin(t);
+	cos_o = f->ix;
+	sin_o = f->iy;
+	f->ix = c * cos_o - s * sin_o;
+	f->iy = s * cos_o + c * sin_o;
 }
 
 void	auto_julia(t_data *f)
