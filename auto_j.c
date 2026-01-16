@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:53:57 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/16 13:21:50 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/16 16:06:20 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	recal_julia(t_data *f)
 	f->iy = s * cos_o + c * sin_o;
 }
 
-void	auto_julia(t_data *f)
+void	update_julia(t_data *f)
 {
 	int	x;
 	int	y;
@@ -47,9 +47,6 @@ void	auto_julia(t_data *f)
 		{
 			i = make_julia(f, x, y);
 			f->iter[y * f->w + x] = i;
-			*(unsigned int *)(f->addr + (y * f->line_length + x
-						* (f->bits_per_pixel / 8)))
-				= make_color(f, f->iter[y * f->w + x]);
 			y++;
 		}
 		x++;

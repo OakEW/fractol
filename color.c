@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:53:57 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/16 12:32:43 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/16 16:08:32 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	recolor_only(t_data *f)
 		}
 		y++;
 	}
-	mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
 }
 
 int	animate(void *param)
@@ -63,18 +62,11 @@ int	animate(void *param)
 	if (f->gradient < 0 && f->autoj < 0)
 		return (0);
 	if (f->autoj > 0 && f->set == 2)
-	{
-		auto_julia(f);
-		mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
-		return (0);
-	}
+		update_julia(f);
 	if (f->gradient > 0)
-	{
-		f->shift += 0.05;
-		recolor_only(f);
-		return (0);
-	}
-	ft_render(f);
+		f->shift += 0.03;
+	recolor_only(f);
+	mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:54:03 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/16 12:33:57 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/16 16:06:34 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int				make_multibrot4(t_data *fractol, int x, int y);
 
 //auto_j
 void			recal_julia(t_data *f);
-void			auto_julia(t_data *f);
+void			update_julia(t_data *f);
 
 //input
 int				close_x(t_data *fractol);
