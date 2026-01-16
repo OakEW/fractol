@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:53:54 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/16 12:27:31 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/16 16:20:45 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ int	key_do_1(int key, t_data *fractol)
 		return (0);
 	}
 	else if (key == 115)
-		return (fractol->gradient *= -1, 0);
+		fractol->gradient *= -1;
 	else if (key == 119)
-		return (fractol->palette_set *= -1, recolor_only(fractol), 0);
+		fractol->palette_set *= -1;
 	else if (key == 100)
-		return (fractol->shift += 0.2, recolor_only(fractol), 0);
+		fractol->shift += 0.2;
 	else if (key == 97)
-		return (fractol->shift -= 0.2, recolor_only(fractol), 0);
+		fractol->shift -= 0.2;
 	else if (key == 65361)
 		fractol->off_x += 0.1 / fractol->zoom;
 	else if (key == 65363)
