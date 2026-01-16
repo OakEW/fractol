@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:53:57 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/16 11:57:08 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/16 12:03:34 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ void	recal_julia(t_data *f)
 	static int		init;
 	double			r;
 
+	f->max_iter = 100 + (int)(log2(f->zoom) * 50);
+	if (f->max_iter < 100)
+		f->max_iter = 100;
 	r = sqrt(f->ix * f->ix + f->iy * f->iy);
 	if (!init)
 	{
