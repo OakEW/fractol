@@ -78,7 +78,7 @@ referenced online).
   - `W` switch between Color / B&W
   - `I` `O` `K` `L` change the shape for julia set
   - `P` auto shape shift
-  - `Mouse center click` center image to mouse position
+  - `Mouse left click` center image to mouse position
 
 ## Resources
 

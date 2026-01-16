@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:53:54 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/15 17:49:21 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/16 11:31:17 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,25 @@ int	key_do_1(int key, t_data *fractol)
 		fractol->off_y += 0.1 / fractol->zoom;
 	else if (key == 65364)
 		fractol->off_y -= 0.1 / fractol->zoom;
+	else
+		return (0);
 	ft_render(fractol);
 	return (0);
 }
 
 int	key_do_2(int key, t_data *fractol)
 {
+	if (fractol->set != 2)
+		return (0);
 	if (key == 112)
 		fractol->autoj *= -1;
-	if (key == 105 && fractol->set == 2)
+	if (key == 105)
 		fractol->ix += 0.01;
-	else if (key == 111 && fractol->set == 2)
+	else if (key == 111)
 		fractol->ix -= 0.01;
-	else if (key == 107 && fractol->set == 2)
+	else if (key == 107)
 		fractol->iy += 0.01;
-	else if (key == 108 && fractol->set == 2)
+	else if (key == 108)
 		fractol->iy -= 0.01;
 	ft_render(fractol);
 	return (0);
@@ -76,7 +80,7 @@ int	mouse_do(int mousecode, int x, int y, t_data *f)
 
 	m_re = (x - f->w / 2.0) / (0.5 * f->zoom * f->h) + f->off_x;
 	m_im = (y - f->h / 2.0) / (0.5 * f->zoom * f->h) + f->off_y;
-	if (mousecode == 2)
+	if (mousecode == 1)
 	{
 		f->off_x = m_re;
 		f->off_y = m_im;
