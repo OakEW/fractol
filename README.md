@@ -86,6 +86,8 @@ Regarding **AI** : AI is used to assist understanding the math and choosing frac
 
 >[**fract-ol: creating graphically beautiful fractals**](https://medium.com/@leogaudin/fract-ol-creating-graphically-beautiful-fractals-6664b6b045b5) *by Léo Gaudin*
 
+>[**Mandelbrot & Julia Sets**](https://www.dynamicmath.xyz/mandelbrot-julia/) *by Juan Carlos Ponce Campuzano*
+
 >[**MiniLibX - GuideBook**](https://42-cursus.gitbook.io/guide/minilibx) *by Laura & Simon*
 
 >[**Libs/MiniLibX**](https://harm-smits.github.io/42docs/libs/minilibx/introduction.html) *42 Doc*
