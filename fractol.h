@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:54:03 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/15 17:08:18 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/16 12:33:57 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,8 @@ int				ft_strcmp(const char *s1, const char *s2);
 void			clean_up(t_data *fractol);
 
 //color
-void			recal_julia(t_data *f);
-void			auto_julia(t_data *f);
 unsigned int	make_color(t_data *fractol, int iteration);
+void			recolor_only(t_data *f);
 int				animate(void *param);
 void			ft_render(t_data *fractol);
 
@@ -64,6 +63,10 @@ void			mapping(t_data *fractol, int x, int y);
 int				make_julia(t_data *fractol, int x, int y);
 int				make_mandelbrot(t_data *fractol, int x, int y);
 int				make_multibrot4(t_data *fractol, int x, int y);
+
+//auto_j
+void			recal_julia(t_data *f);
+void			auto_julia(t_data *f);
 
 //input
 int				close_x(t_data *fractol);

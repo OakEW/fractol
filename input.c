@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:53:54 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/16 11:31:17 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/16 12:27:31 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ int	key_do_1(int key, t_data *fractol)
 		mlx_loop_end(fractol->mlx);
 		return (0);
 	}
-	else if (key == 119)
-		fractol->palette_set *= -1;
 	else if (key == 115)
-		fractol->gradient *= -1;
+		return (fractol->gradient *= -1, 0);
+	else if (key == 119)
+		return (fractol->palette_set *= -1, recolor_only(fractol), 0);
 	else if (key == 100)
-		fractol->shift += 0.1;
+		return (fractol->shift += 0.2, recolor_only(fractol), 0);
 	else if (key == 97)
-		fractol->shift -= 0.1;
+		return (fractol->shift -= 0.2, recolor_only(fractol), 0);
 	else if (key == 65361)
 		fractol->off_x += 0.1 / fractol->zoom;
 	else if (key == 65363)
@@ -51,9 +51,9 @@ int	key_do_2(int key, t_data *fractol)
 {
 	if (fractol->set != 2)
 		return (0);
-	if (key == 112)
+	else if (key == 112)
 		fractol->autoj *= -1;
-	if (key == 105)
+	else if (key == 105)
 		fractol->ix += 0.01;
 	else if (key == 111)
 		fractol->ix -= 0.01;
@@ -61,6 +61,8 @@ int	key_do_2(int key, t_data *fractol)
 		fractol->iy += 0.01;
 	else if (key == 108)
 		fractol->iy -= 0.01;
+	else
+		return (0);
 	ft_render(fractol);
 	return (0);
 }

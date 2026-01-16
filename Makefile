@@ -6,11 +6,11 @@
 #    By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/14 15:26:24 by ywang2            #+#    #+#              #
-#    Updated: 2026/01/15 13:46:01 by ywang2           ###   ########.fr        #
+#    Updated: 2026/01/16 12:20:29 by ywang2           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC = utility.c color.c formula.c input.c fractol.c
+SRC = utility.c color.c formula.c auto_j.c input.c fractol.c
 
 OBJS = $(SRC:.c=.o)
 

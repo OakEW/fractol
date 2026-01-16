@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:53:57 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/16 12:03:34 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/16 12:32:43 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,27 @@ unsigned int	make_color(t_data *f, int i)
 	return ((r << 16) | (g << 8) | b);
 }
 
+void	recolor_only(t_data *f)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < f->h)
+	{
+		x = 0;
+		while (x < f->w)
+		{
+			*(unsigned int *)(f->addr + (y * f->line_length + x
+						* (f->bits_per_pixel / 8)))
+				= make_color(f, f->iter[y * f->w + x]);
+			x++;
+		}
+		y++;
+	}
+	mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
+}
+
 int	animate(void *param)
 {
 	t_data	*f;
@@ -41,60 +62,20 @@ int	animate(void *param)
 	f = (t_data *)param;
 	if (f->gradient < 0 && f->autoj < 0)
 		return (0);
-	if (f->gradient > 0)
-		f->shift += 0.05;
 	if (f->autoj > 0 && f->set == 2)
 	{
 		auto_julia(f);
 		mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
 		return (0);
 	}
+	if (f->gradient > 0)
+	{
+		f->shift += 0.05;
+		recolor_only(f);
+		return (0);
+	}
 	ft_render(f);
 	return (0);
-}
-
-void	recal_julia(t_data *f)
-{
-	static double	t;
-	static int		init;
-	double			r;
-
-	f->max_iter = 100 + (int)(log2(f->zoom) * 50);
-	if (f->max_iter < 100)
-		f->max_iter = 100;
-	r = sqrt(f->ix * f->ix + f->iy * f->iy);
-	if (!init)
-	{
-		t = atan2(f->iy, f->ix);
-		init = 1;
-	}
-	t += 0.005;
-	f->ix = r * cos(t);
-	f->iy = r * sin(t);
-}
-
-void	auto_julia(t_data *f)
-{
-	int	x;
-	int	y;
-	int	i;
-
-	recal_julia(f);
-	x = 0;
-	while (x < f->w)
-	{
-		y = 0;
-		while (y < f->h)
-		{
-			i = make_julia(f, x, y);
-			f->iter[y * f->w + x] = i;
-			*(unsigned int *)(f->addr + (y * f->line_length + x
-						* (f->bits_per_pixel / 8)))
-				= make_color(f, f->iter[y * f->w + x]);
-			y++;
-		}
-		x++;
-	}
 }
 
 void	ft_render(t_data *f)
