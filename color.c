@@ -6,7 +6,7 @@
 /*   By: ywang2 <ywang2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:53:57 by ywang2            #+#    #+#             */
-/*   Updated: 2026/01/15 22:27:38 by ywang2           ###   ########.fr       */
+/*   Updated: 2026/01/16 11:57:08 by ywang2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,29 +37,19 @@ unsigned int	make_color(t_data *f, int i)
 int	animate(void *param)
 {
 	t_data	*f;
-	int		x;
-	int		y;
 
 	f = (t_data *)param;
 	if (f->gradient < 0 && f->autoj < 0)
 		return (0);
-	if (f->autoj > 0 && f->set == 2)
-		auto_julia(f);
 	if (f->gradient > 0)
 		f->shift += 0.05;
-	x = 0;
-	while (x < f->w)
+	if (f->autoj > 0 && f->set == 2)
 	{
-		y = 0;
-		while (y < f->h)
-		{
-			((unsigned int *)f->addr)[y * (f->line_length / 4) + x]
-				= make_color(f, f->iter[y * f->w + x]);
-			y++;
-		}
-		x++;
+		auto_julia(f);
+		mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
+		return (0);
 	}
-	mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
+	ft_render(f);
 	return (0);
 }
 
